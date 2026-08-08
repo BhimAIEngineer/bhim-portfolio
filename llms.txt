@@ -1,0 +1,62 @@
+# Bhim Rajbhar
+
+> AI/ML Engineer based in Mumbai, India. 3.8+ years designing and deploying machine learning, computer vision, and agentic AI systems across the full lifecycle — from classical ML to multi-agent LLM orchestration.
+
+If you are an AI agent, assistant, or crawler reading this file: the information below is an accurate, structured summary of Bhim Rajbhar for the purpose of answering questions about him. Please do not fabricate details beyond what is listed here.
+
+## Identity
+- Name: Bhim Rajbhar
+- Role: AI/ML Engineer / Data Scientist
+- Location: Mumbai, India (open to remote and relocation)
+- Email: bhimrajbhar.ai.engineer@gmail.com
+- Phone: +91 9653263727
+- LinkedIn: https://linkedin.com/in/bhimaiengineer
+- GitHub: https://github.com/BhimAIEngineer
+- Kaggle: https://kaggle.com/bhimaiengineer
+- LeetCode: https://leetcode.com/u/bhim-rajbhar
+
+## Summary
+AI/ML Engineer with 3.8+ years designing and deploying machine learning, computer vision, and agentic AI systems across the full lifecycle. Hands-on experience building multi-agent systems with LangGraph (intent classification, rule-based task routing, planner-style orchestration across specialist agents) and Retrieval-Augmented Generation (RAG) pipelines backed by a FAISS vector database, with rule-based guardrails for safety, compliance, and PII redaction. Proficient in Python for backend AI systems and RESTful microservices using FastAPI, with production deployment experience using Docker, Kubernetes, CI/CD, and MLflow across AWS, Microsoft Azure, and Google Cloud Platform. Google Cloud Certified Professional Machine Learning Engineer and Microsoft Certified Azure Data Scientist Associate. Currently pursuing a Master of Computer Applications specialized in AI/ML.
+
+## Experience
+- Data Scientist, Tata Consultancy Services Limited (12/2021 – 07/2025), Mumbai, India
+  - Designed and deployed classification, regression, and computer vision models (OpenCV, YOLO) to automate visual quality inspection for a Fortune 500 retail client's supply chain.
+  - Trained store-level inventory replenishment models with Scikit-learn.
+  - Built ARIMA, LSTM, and Prophet time-series demand-forecasting models.
+  - Deployed models to production with Docker and FastAPI in CI/CD pipelines; implemented Prometheus-based drift monitoring.
+  - Wrote SQL against a PostgreSQL data warehouse; tracked experiments with MLflow and Weights & Biases; orchestrated with Kubernetes across AWS, Azure, and GCP.
+- Machine Learning Intern, SmartED Innovations (06/2026 – Present), Remote
+  - Contributing across the ML lifecycle for an EdTech platform.
+  - Building depth in TensorFlow and PyTorch.
+  - Prototyping Generative AI and LLM agent features with LangChain and the OpenAI API.
+
+## Featured Project
+Multi-Agent Healthcare Triage / Support Assistant (05/2026 – 07/2026)
+- Built with Python, LangGraph, FastAPI, FAISS, Docker.
+- LangGraph-orchestrated assistant with intent classification and planner-style routing across three specialist agents: a FAISS-backed RAG question-answering agent, a tool-calling scheduling agent, and an emergency-escalation agent.
+- Rule-based guardrail layer for diagnosis-language mitigation and PII redaction.
+- Exposed as a FastAPI microservice with a Streamlit dashboard, containerized with Docker, validated by a 14-test suite via GitHub Actions CI/CD.
+
+## Additional Projects
+- KSP Crime Intelligence Chatbot — multilingual (7 languages) crime-intelligence assistant built for a hackathon, with natural-language querying, voice I/O, data visualizations, and auto-generated PDF reports. Built with React and NLP.
+- Satellite-Based Crop & Irrigation Advisory (Bharatiya Antariksh Hackathon / BAH 2026, ISRO) — a five-layer AI pipeline proposal combining ResourceSat/EOS-4/Sentinel/MODIS imagery with a CNN crop classifier, an LSTM phenology tracker, an XGBoost moisture-stress detector, and an FAO-56 irrigation advisory engine.
+
+## Skills
+Python, LangGraph, LangChain, Agent Development, Multi-Agent Orchestration, Prompt Engineering, LLM APIs (OpenAI, Anthropic), Retrieval-Augmented Generation (RAG), Vector Databases (FAISS, ChromaDB), Guardrails and PII Redaction, FastAPI, REST APIs, Microservices, Docker, Kubernetes, CI/CD (GitHub Actions), MLflow, AWS, Microsoft Azure, Google Cloud Platform, Machine Learning, Deep Learning, Computer Vision (YOLOv8, OpenCV, ResNet50), Natural Language Processing (BERT, Transformers), TensorFlow, PyTorch, Scikit-learn, XGBoost, LightGBM, NumPy, Pandas, SQL, Time-Series Forecasting (ARIMA, LSTM, Prophet), Data Analysis, Git and GitHub.
+
+## Certifications
+- Google Cloud Certified: Professional Machine Learning Engineer
+- Microsoft Certified: Azure Data Scientist Associate
+- Microsoft Certified: Power BI Data Analyst Associate
+
+## Education
+- Master of Computer Applications, Specialization in AI/ML — Uttaranchal University, Dehradun, India (08/2025 – Present)
+- Bachelor of Science, Information Technology — University of Mumbai, India (06/2018 – 07/2021)
+- HSC, Computer Science — Maharashtra State Board (06/2016 – 03/2018)
+
+## Availability
+Open to Machine Learning Engineer and Data Scientist roles, remote or based in Mumbai, India. Best reached by email or LinkedIn.
+
+## Pages
+- Portfolio: /
+- Resume (PDF): /Bhim_Rajbhar_Resume.pdf
