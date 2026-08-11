@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+  (function(){
+    try{
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch(e){}
+  })();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Bhim Rajbhar — AI/ML Engineer</title>
-<meta name="description" content="Bhim Rajbhar — AI/ML Engineer with 3.8+ years building multi-agent systems, RAG pipelines, computer vision and production ML. Based in Mumbai, India.">
-<meta name="keywords" content="Bhim Rajbhar, AI Engineer, ML Engineer, Data Scientist, LangGraph, RAG, Multi-Agent Systems, Machine Learning, Mumbai, India">
+<title>Bhim Rajbhar · AI/ML Engineer</title>
+<meta name="description" content="Bhim Rajbhar, AI/ML Engineer, Data Scientist, and Generative AI Engineer with 3.8+ years across machine learning, data analysis, deep learning, NLP, computer vision, and multi-agent systems. Based in Mumbai, India.">
+<meta name="keywords" content="Bhim Rajbhar, AI Engineer, Machine Learning Engineer, Data Scientist, Data Analyst, Generative AI Engineer, Deep Learning Engineer, NLP Engineer, Computer Vision Engineer, LangGraph, RAG, Multi-Agent Systems, Mumbai, India">
 <meta name="author" content="Bhim Rajbhar">
 <link rel="canonical" href="https://your-domain-here.com/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Bhim Rajbhar — AI/ML Engineer">
-<meta property="og:description" content="AI/ML Engineer with 3.8+ years building multi-agent systems, RAG pipelines, computer vision and production ML. Based in Mumbai, India.">
+<meta property="og:title" content="Bhim Rajbhar · AI/ML Engineer">
+<meta property="og:description" content="AI/ML Engineer, Data Scientist, and Generative AI Engineer with 3.8+ years across machine learning, data analysis, deep learning, NLP, and computer vision. Based in Mumbai, India.">
 <meta property="og:url" content="https://your-domain-here.com/">
 <meta property="og:site_name" content="Bhim Rajbhar">
 <meta property="og:image" content="https://your-domain-here.com/og-image.png">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Bhim Rajbhar — AI/ML Engineer">
-<meta name="twitter:description" content="AI/ML Engineer with 3.8+ years building multi-agent systems, RAG pipelines, computer vision and production ML.">
+<meta name="twitter:title" content="Bhim Rajbhar · AI/ML Engineer">
+<meta name="twitter:description" content="AI/ML Engineer, Data Scientist, and Generative AI Engineer with 3.8+ years across machine learning, data analysis, deep learning, NLP, and computer vision.">
 <meta name="twitter:image" content="https://your-domain-here.com/og-image.png">
 
 <!-- Favicon -->
@@ -33,7 +42,7 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Bhim Rajbhar",
-  "jobTitle": "AI/ML Engineer",
+  "jobTitle": "AI/ML Engineer, Data Scientist & Generative AI Engineer",
   "url": "https://your-domain-here.com/",
   "email": "mailto:bhimrajbhar.ai.engineer@gmail.com",
   "telephone": "+91-9653263727",
@@ -48,7 +57,7 @@
     { "@type": "CollegeOrUniversity", "name": "Uttaranchal University" },
     { "@type": "CollegeOrUniversity", "name": "University of Mumbai" }
   ],
-  "knowsAbout": ["Machine Learning", "Deep Learning", "Computer Vision", "Natural Language Processing", "Multi-Agent Systems", "Retrieval-Augmented Generation", "MLOps"]
+  "knowsAbout": ["Machine Learning", "Data Science", "Data Analysis", "Deep Learning", "Computer Vision", "Natural Language Processing", "Generative AI", "Multi-Agent Systems", "Retrieval-Augmented Generation", "MLOps"]
 }
 </script>
 
@@ -71,12 +80,38 @@
   --accent-2:#F0B86E;
   --accent-2-soft:rgba(240,184,110,.14);
   --violet:#8B7CF6;
+  --header-bg:rgba(7,9,13,.7);
+  --shadow-color:rgba(0,0,0,.6);
   --font-display:'Fraunces',serif;
   --font-mono:'JetBrains Mono',monospace;
   --font-body:'Inter',sans-serif;
   --maxw:1180px;
   --mx:50%; --my:30%;
 }
+html[data-theme="light"]{
+  --bg:#F7F6F2;
+  --bg-alt:#FFFFFF;
+  --surface:#FFFFFF;
+  --surface-2:#F1EFEA;
+  --border:#DDD9D0;
+  --border-soft:#E7E4DC;
+  --text:#181510;
+  --text-dim:#5B564C;
+  --text-faint:#8C8678;
+  --accent:#0E9C8F;
+  --accent-soft:rgba(14,156,143,.12);
+  --accent-2:#B9711E;
+  --accent-2-soft:rgba(185,113,30,.12);
+  --violet:#6B4FD6;
+  --header-bg:rgba(247,246,242,.78);
+  --shadow-color:rgba(24,21,16,.14);
+}
+html[data-theme="light"] #particles{opacity:.28;}
+html[data-theme="light"] .orb{mix-blend-mode:multiply; opacity:.5;}
+html[data-theme="light"] .btn-primary{color:#F7F6F2;}
+html[data-theme="light"] .btn-primary:hover{background:#12B3A3;}
+html[data-theme="light"] .skip-link{color:#F7F6F2;}
+html[data-theme="light"] .hero h1 em{-webkit-text-fill-color:transparent;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 @media (prefers-reduced-motion: reduce){
@@ -92,6 +127,7 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
   position:relative;
+  transition:background-color .35s ease, color .35s ease;
 }
 
 /* ---------- ambient background layers ---------- */
@@ -170,23 +206,26 @@ main, header, footer{position:relative; z-index:1;}
 h1,h2,h3{font-family:var(--font-display); font-weight:600; letter-spacing:-.01em;}
 .section-title{
   font-size:clamp(28px,4vw,40px);
-  margin:14px 0 8px;
+  margin:16px 0 14px;
   color:var(--text);
+  line-height:1.15;
 }
 .section-sub{
   color:var(--text-dim);
   max-width:56ch;
-  font-size:15.5px;
+  font-size:16px;
+  line-height:1.65;
 }
 .section{padding:110px 0; position:relative; border-bottom:1px solid var(--border-soft); scroll-margin-top:84px;}
-.section-head{margin-bottom:56px;}
+.section-head{margin-bottom:64px;}
 
 /* ---------- nav ---------- */
 header{
   position:fixed; top:0; left:0; right:0; z-index:50;
-  background:rgba(7,9,13,.7);
+  background:var(--header-bg);
   backdrop-filter:blur(16px) saturate(150%);
   border-bottom:1px solid var(--border-soft);
+  transition:background-color .35s ease;
 }
 nav{
   max-width:var(--maxw); margin:0 auto; padding:0 32px;
@@ -239,6 +278,23 @@ nav{
 @keyframes spinAng{to{--ang:360deg;}}
 @property --ang{syntax:'<angle>'; inherits:false; initial-value:0deg;}
 
+/* HUD targeting-corner accent, paired with the glow border above */
+.glow-card::after, .hud-frame::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:2;
+  background:
+    linear-gradient(var(--accent),var(--accent)) top left/13px 2px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) top left/2px 13px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) top right/13px 2px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) top right/2px 13px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) bottom left/13px 2px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) bottom left/2px 13px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) bottom right/13px 2px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) bottom right/2px 13px no-repeat;
+  opacity:0; transition:opacity .3s ease;
+  filter:drop-shadow(0 0 4px var(--accent));
+}
+.glow-card:hover::after, .hud-frame:hover::after, .hud-frame.always-on::after{opacity:.85;}
+
 /* ---------- hero ---------- */
 .hero{
   min-height:100vh; display:flex; align-items:center;
@@ -280,6 +336,12 @@ nav{
 }
 .btn-primary{background:var(--accent); color:#04141A; font-weight:600; box-shadow:0 0 0 rgba(79,224,208,0);}
 .btn-primary:hover{background:#6BEBDD; transform:translateY(-2px); box-shadow:0 10px 30px -6px rgba(79,224,208,.55);}
+.btn-primary::after{
+  content:""; position:absolute; top:0; left:-60%; width:40%; height:100%;
+  background:linear-gradient(115deg, transparent, rgba(255,255,255,.55), transparent);
+  transform:skewX(-20deg); transition:left .55s ease;
+}
+.btn-primary:hover::after{left:130%;}
 .btn-ghost{border-color:var(--border); color:var(--text);}
 .btn-ghost:hover{border-color:var(--accent); background:var(--accent-soft); transform:translateY(-2px); box-shadow:0 8px 24px -8px rgba(79,224,208,.35);}
 .hero-stats{display:flex; gap:34px; flex-wrap:wrap;}
@@ -296,6 +358,17 @@ nav{
   transform-style:preserve-3d;
 }
 .graph-box svg{width:100%; height:100%;}
+.graph-box::before{
+  content:""; position:absolute; inset:0; z-index:3; pointer-events:none;
+  background:linear-gradient(115deg, transparent 40%, rgba(79,224,208,.16) 48%, rgba(79,224,208,.28) 50%, rgba(79,224,208,.16) 52%, transparent 60%);
+  background-size:220% 220%; background-position:130% 0%;
+  animation:hudSweep 6.5s ease-in-out infinite;
+}
+@keyframes hudSweep{
+  0%, 18%{background-position:130% 0%;}
+  55%, 65%{background-position:-30% 100%;}
+  100%{background-position:-30% 100%;}
+}
 .graph-label{
   position:absolute; font-family:var(--font-mono); font-size:10.5px; color:var(--text-faint);
   bottom:14px; left:16px; letter-spacing:.06em;
@@ -311,13 +384,16 @@ nav{
 
 /* ---------- about ---------- */
 .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
-.about-text p{color:var(--text-dim); margin-bottom:18px; font-size:15.5px;}
+.about-text{max-width:62ch;}
+.about-text p{color:var(--text-dim); margin-bottom:22px; font-size:16px; line-height:1.75;}
+.about-text p:first-child{color:var(--text); font-size:17.5px; line-height:1.65;}
+.about-text p:last-child{margin-bottom:0;}
 .about-text strong{color:var(--text); font-weight:600;}
 .facts{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border-soft); border:1px solid var(--border-soft); border-radius:10px; overflow:hidden;}
-.fact{background:var(--surface); padding:22px; transition:background .3s ease;}
+.fact{background:var(--surface); padding:24px 22px; transition:background .3s ease;}
 .fact:hover{background:var(--surface-2);}
-.fact .eyebrow{margin-bottom:8px; font-size:11px;}
-.fact p{color:var(--text-dim); font-size:14px; line-height:1.55;}
+.fact .eyebrow{margin-bottom:10px; font-size:11px;}
+.fact p{color:var(--text-dim); font-size:14.5px; line-height:1.6;}
 .fact p strong{color:var(--text);}
 
 /* ---------- timeline (experience/education) ---------- */
@@ -334,17 +410,18 @@ nav{
   animation:nodePulseRing 2.8s ease-in-out infinite;
 }
 @keyframes nodePulseRing{0%,100%{box-shadow:0 0 0 4px var(--bg), 0 0 0px rgba(79,224,208,.5);} 50%{box-shadow:0 0 0 4px var(--bg), 0 0 14px rgba(79,224,208,.65);}}
-.tl-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; margin-bottom:6px;}
-.tl-role{font-family:var(--font-display); font-size:21px; font-weight:600;}
+.tl-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; margin-bottom:8px;}
+.tl-role{font-family:var(--font-display); font-size:22px; font-weight:600;}
 .tl-date{font-family:var(--font-mono); font-size:12px; color:var(--accent-2); letter-spacing:.03em;}
-.tl-org{font-family:var(--font-mono); font-size:13.5px; color:var(--text-dim); margin-bottom:14px;}
-.tl-list{list-style:none; max-width:70ch;}
+.tl-org{font-family:var(--font-mono); font-size:13.5px; color:var(--text-dim); margin-bottom:22px; padding-bottom:14px; border-bottom:1px solid var(--border-soft);}
+.tl-list{list-style:none; max-width:66ch;}
 .tl-list li{
-  position:relative; padding-left:20px; margin-bottom:9px; color:var(--text-dim); font-size:14.5px;
+  position:relative; padding-left:24px; margin-bottom:16px; color:var(--text-dim); font-size:15px; line-height:1.65;
   transition:color .2s ease, transform .2s ease;
 }
+.tl-list li:last-child{margin-bottom:0;}
 .tl-list li:hover{color:var(--text); transform:translateX(3px);}
-.tl-list li::before{content:"→"; position:absolute; left:0; color:var(--accent); font-family:var(--font-mono);}
+.tl-list li::before{content:"→"; position:absolute; left:0; top:0; color:var(--accent); font-family:var(--font-mono);}
 
 /* ---------- featured project ---------- */
 .feature-card{
@@ -358,8 +435,8 @@ nav{
   color:var(--accent-2); border:1px solid rgba(240,184,110,.3); background:var(--accent-2-soft);
   padding:4px 10px; border-radius:20px; margin-bottom:16px; text-transform:uppercase;
 }
-.feature-card h3{font-size:26px; margin-bottom:14px;}
-.feature-card p{color:var(--text-dim); font-size:15px; margin-bottom:22px;}
+.feature-card h3{font-size:26px; margin-bottom:16px; line-height:1.25;}
+.feature-card p{color:var(--text-dim); font-size:15.5px; line-height:1.7; margin-bottom:26px; max-width:52ch;}
 .mini-arch{border:1px solid var(--border-soft); border-radius:10px; background:var(--bg-alt); padding:18px;}
 .mini-arch svg{width:100%; height:auto;}
 .stack-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;}
@@ -380,15 +457,43 @@ nav{
   transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
 }
 .proj-card:hover{border-color:transparent; transform:translateY(-4px); box-shadow:0 20px 44px -18px rgba(139,124,246,.25);}
-.proj-card .eyebrow{margin-bottom:12px; font-size:10.5px;}
-.proj-card h4{font-family:var(--font-display); font-size:19px; margin-bottom:10px;}
-.proj-card p{color:var(--text-dim); font-size:14px; margin-bottom:16px;}
+.proj-card .eyebrow{margin-bottom:14px; font-size:10.5px;}
+.proj-card h4{font-family:var(--font-display); font-size:19px; margin-bottom:12px; line-height:1.3;}
+.proj-card p{color:var(--text-dim); font-size:14.5px; line-height:1.65; margin-bottom:18px;}
+
+/* ---------- project metric visuals ---------- */
+.metric-viz{display:flex; align-items:center; gap:20px; margin:4px 0 18px; padding:16px; background:var(--surface-2); border:1px solid var(--border-soft); border-radius:10px;}
+.metric-gauge{flex-shrink:0; position:relative; width:78px; height:78px;}
+.metric-gauge svg{width:100%; height:100%; transform:rotate(-90deg);}
+.metric-gauge .gauge-track{fill:none; stroke:var(--border-soft); stroke-width:7;}
+.metric-gauge .gauge-fill{fill:none; stroke:#4FE0D0; stroke-width:7; stroke-linecap:round; stroke-dasharray:213; stroke-dashoffset:213; transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1);}
+.metric-gauge.in .gauge-fill{stroke-dashoffset:var(--gauge-offset);}
+.metric-gauge .gauge-num{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:15px; font-weight:600; color:var(--text);}
+.metric-bars{flex:1; display:flex; flex-direction:column; gap:9px;}
+.metric-bars .metric-label{font-family:var(--font-mono); font-size:11px; color:var(--text-faint); display:flex; justify-content:space-between; margin-bottom:3px;}
+.metric-bars .metric-track{height:6px; border-radius:3px; background:var(--border-soft); overflow:hidden;}
+.metric-bars .metric-fill{height:100%; border-radius:3px; width:0%; transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+.metric-bars .metric-fill.baseline{background:var(--text-faint);}
+.metric-bars .metric-fill.improved{background:#8B7CF6;}
+.metric-viz.in .metric-fill.baseline{width:78%;}
+.metric-viz.in .metric-fill.improved{width:100%;}
+
+/* ---------- career trajectory chart ---------- */
+.trajectory-chart{margin-bottom:56px; padding:28px 24px 18px; background:var(--surface); border:1px solid var(--border-soft); border-radius:12px;}
+.trajectory-chart svg{width:100%; height:auto; display:block;}
+.trajectory-path{stroke-dasharray:640; stroke-dashoffset:640; transition:stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1);}
+.trajectory-chart.in .trajectory-path{stroke-dashoffset:0;}
+.trajectory-milestone{opacity:0; transform:translateY(6px); transition:opacity .6s ease, transform .6s ease;}
+.trajectory-chart.in .trajectory-milestone{opacity:1; transform:translateY(0);}
+.trajectory-chart.in .trajectory-milestone:nth-of-type(1){transition-delay:.2s;}
+.trajectory-chart.in .trajectory-milestone:nth-of-type(2){transition-delay:.7s;}
+.trajectory-chart.in .trajectory-milestone:nth-of-type(3){transition-delay:1.3s;}
 .proj-stack{display:flex; flex-wrap:wrap; gap:6px;}
 .proj-stack span{font-family:var(--font-mono); font-size:11px; color:var(--text-faint); border:1px solid var(--border-soft); padding:3px 8px; border-radius:4px;}
 
 /* ---------- skills ---------- */
 .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-soft); border:1px solid var(--border-soft); border-radius:12px; overflow:hidden;}
-.skill-block{background:var(--surface); padding:28px; transition:background .3s ease;}
+.skill-block{background:var(--surface); padding:28px; transition:background .3s ease; position:relative;}
 .skill-block:hover{background:var(--surface-2);}
 .skill-block .eyebrow{margin-bottom:16px; font-size:11px;}
 .chip-row{display:flex; flex-wrap:wrap; gap:7px;}
@@ -398,6 +503,18 @@ nav{
   transition:all .2s ease;
 }
 .chip:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px); box-shadow:0 6px 16px -6px rgba(79,224,208,.35);}
+
+/* ---------- role expertise ---------- */
+.expertise-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-soft); border:1px solid var(--border-soft); border-radius:12px; overflow:hidden;}
+.expertise-card{background:var(--surface); padding:26px 24px; transition:background .3s ease; display:flex; flex-direction:column;}
+.expertise-card:hover{background:var(--surface-2);}
+.expertise-card .expertise-num{font-family:var(--font-mono); font-size:11px; color:var(--text-faint); letter-spacing:.08em; margin-bottom:14px;}
+.expertise-card h4{font-family:var(--font-display); font-size:17px; margin-bottom:10px; line-height:1.3; color:var(--text);}
+.expertise-card p{color:var(--text-dim); font-size:13.5px; line-height:1.6; margin-bottom:16px; flex:1;}
+.expertise-tags{display:flex; flex-wrap:wrap; gap:6px;}
+.expertise-tags span{font-family:var(--font-mono); font-size:10.5px; color:var(--text-faint); border:1px solid var(--border-soft); padding:3px 8px; border-radius:4px;}
+@media (max-width:980px){ .expertise-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .expertise-grid{grid-template-columns:1fr;} }
 
 /* ---------- certs ---------- */
 .cert-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
@@ -451,11 +568,44 @@ nav{
 .contact-section h2{font-size:clamp(32px,5vw,52px); margin:18px 0 20px;}
 .contact-section p{color:var(--text-dim); max-width:48ch; margin:0 auto 40px; font-size:16px;}
 .contact-links{display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
-footer{padding:30px 0 50px; text-align:center;}
-.footer-links{display:flex; justify-content:center; gap:26px; flex-wrap:wrap; margin-bottom:18px;}
-.footer-links a{font-family:var(--font-mono); font-size:12.5px; color:var(--text-dim); transition:color .2s;}
-.footer-links a:hover{color:var(--accent);}
+
+.status-pill{
+  display:inline-flex; align-items:center; gap:9px; margin:0 auto 26px;
+  background:var(--accent-soft); border:1px solid rgba(79,224,208,.3); color:var(--accent);
+  font-family:var(--font-mono); font-size:12px; padding:8px 16px; border-radius:20px;
+}
+.status-pill .pulse-dot{width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px var(--accent-soft), 0 0 8px var(--accent); animation:dotPulse 2.4s ease-in-out infinite;}
+
+.contact-divider{display:flex; align-items:center; gap:16px; max-width:420px; margin:48px auto 32px; color:var(--text-faint); font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.08em;}
+.contact-divider::before, .contact-divider::after{content:""; flex:1; height:1px; background:var(--border-soft);}
+
+.contact-form{max-width:560px; margin:0 auto; text-align:left; display:flex; flex-direction:column; gap:18px;}
+.form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+.form-field{display:flex; flex-direction:column; gap:7px;}
+.form-field label{font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.06em;}
+.form-field input, .form-field textarea{
+  background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 14px;
+  color:var(--text); font-family:var(--font-body); font-size:14.5px; resize:vertical; transition:border-color .2s ease, box-shadow .2s ease;
+}
+.form-field input:focus, .form-field textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
+.form-field input::placeholder, .form-field textarea::placeholder{color:var(--text-faint);}
+.contact-form .btn{align-self:flex-start;}
+.form-note{color:var(--text-faint); font-family:var(--font-mono); font-size:11.5px; margin:0;}
+.form-status{font-family:var(--font-mono); font-size:12.5px; color:var(--accent); min-height:16px;}
+@media (max-width:560px){ .form-row{grid-template-columns:1fr;} }
+
+footer{padding:64px 0 30px;}
+.footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid var(--border-soft); text-align:left;}
+.footer-brand p{color:var(--text-dim); font-size:13.5px; margin-top:14px; max-width:34ch; line-height:1.6;}
+.footer-col-title{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint); margin-bottom:16px;}
+.footer-col{display:flex; flex-direction:column; gap:11px;}
+.footer-col a, .footer-col span.copyable{font-family:var(--font-mono); font-size:13px; color:var(--text-dim); transition:color .2s; align-self:flex-start;}
+.footer-col a:hover, .footer-col span.copyable:hover{color:var(--accent);}
+.footer-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding-top:24px; text-align:left;}
 .footer-note{font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint);}
+.footer-badges{display:flex; gap:8px; flex-wrap:wrap;}
+.footer-badges span{font-family:var(--font-mono); font-size:10.5px; color:var(--text-faint); border:1px solid var(--border-soft); padding:4px 10px; border-radius:20px;}
+@media (max-width:760px){ .footer-grid{grid-template-columns:1fr; text-align:center;} .footer-col{align-items:center;} .footer-col a, .footer-col span.copyable{align-self:center;} .footer-bottom{justify-content:center; text-align:center;} }
 
 /* ---------- reveal ---------- */
 .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
@@ -654,6 +804,143 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
   .ai-terminal{right:10px; left:10px; width:auto; bottom:82px;}
   .ai-trigger{right:14px; bottom:14px; padding:11px 16px 11px 13px; font-size:12px;}
 }
+
+/* ---------- command palette ---------- */
+.cmdk-trigger{
+  display:flex; align-items:center; gap:9px; margin-left:26px;
+  background:var(--bg-alt); border:1px solid var(--border); border-radius:7px;
+  padding:7px 10px 7px 13px; cursor:pointer; color:var(--text-dim); font-family:var(--font-mono); font-size:12px;
+  transition:all .2s ease;
+}
+.cmdk-trigger:hover{border-color:var(--accent); color:var(--text);}
+.cmdk-trigger kbd{
+  font-family:var(--font-mono); font-size:10.5px; background:var(--surface-2); border:1px solid var(--border);
+  border-radius:4px; padding:2px 6px; color:var(--text-faint);
+}
+
+/* ---------- theme toggle ---------- */
+.theme-toggle{
+  display:flex; align-items:center; justify-content:center; margin-left:14px;
+  width:36px; height:36px; border-radius:50%; background:var(--bg-alt); border:1px solid var(--border);
+  color:var(--text-dim); cursor:pointer; position:relative; overflow:hidden; transition:all .25s ease;
+}
+.theme-toggle:hover{border-color:var(--accent); color:var(--accent);}
+.theme-icon{position:absolute; font-size:15px; transition:transform .35s cubic-bezier(.2,.8,.2,1), opacity .3s ease;}
+.theme-icon-sun{transform:translateY(0) rotate(0);}
+.theme-icon-moon{transform:translateY(24px) rotate(-40deg); opacity:0;}
+html[data-theme="light"] .theme-icon-sun{transform:translateY(-24px) rotate(40deg); opacity:0;}
+html[data-theme="light"] .theme-icon-moon{transform:translateY(0) rotate(0); opacity:1;}
+.theme-toggle-mobile{
+  width:auto; height:auto; border-radius:24px; padding:11px 22px; gap:10px;
+  font-family:var(--font-mono); font-size:14px; color:var(--text);
+}
+.theme-toggle-mobile .theme-icon{position:static; transform:none !important; opacity:1 !important; display:none;}
+html:not([data-theme="light"]) .theme-toggle-mobile .theme-icon-sun{display:inline;}
+html[data-theme="light"] .theme-toggle-mobile .theme-icon-moon{display:inline;}
+@media (max-width:640px){ .theme-toggle{display:none;} }
+.cmdk-overlay{
+  position:fixed; inset:0; z-index:200; background:rgba(4,6,9,.72); backdrop-filter:blur(4px);
+  display:flex; align-items:flex-start; justify-content:center; padding-top:14vh;
+  opacity:0; pointer-events:none; transition:opacity .2s ease;
+}
+.cmdk-overlay.open{opacity:1; pointer-events:auto;}
+.cmdk-modal{
+  width:min(560px, calc(100vw - 40px)); max-height:60vh; display:flex; flex-direction:column;
+  background:var(--bg-alt); border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  box-shadow:0 40px 100px -20px rgba(0,0,0,.8);
+  transform:translateY(-14px) scale(.98); transition:transform .2s cubic-bezier(.2,.7,.2,1);
+}
+.cmdk-overlay.open .cmdk-modal{transform:translateY(0) scale(1);}
+.cmdk-input-row{display:flex; align-items:center; gap:10px; padding:16px 18px; border-bottom:1px solid var(--border-soft);}
+.cmdk-prompt{color:var(--accent); font-family:var(--font-mono); font-size:16px;}
+.cmdk-input{flex:1; background:none; border:none; outline:none; color:var(--text); font-family:var(--font-mono); font-size:14.5px;}
+.cmdk-input::placeholder{color:var(--text-faint);}
+.cmdk-input-row kbd{font-family:var(--font-mono); font-size:10.5px; color:var(--text-faint); border:1px solid var(--border); border-radius:4px; padding:2px 6px;}
+.cmdk-results{overflow-y:auto; padding:8px;}
+.cmdk-item{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:11px 12px; border-radius:8px; cursor:pointer; color:var(--text-dim);
+  font-family:var(--font-mono); font-size:13px; transition:background .12s ease, color .12s ease;
+}
+.cmdk-item span.hint{color:var(--text-faint); font-size:11px;}
+.cmdk-item:hover, .cmdk-item.active{background:var(--surface-2); color:var(--text);}
+.cmdk-item:hover span.hint, .cmdk-item.active span.hint{color:var(--accent);}
+.cmdk-empty{padding:24px 12px; text-align:center; color:var(--text-faint); font-family:var(--font-mono); font-size:12.5px;}
+@media (max-width:640px){ .cmdk-trigger{display:none;} }
+
+/* ---------- project filter ---------- */
+.filter-bar{display:flex; flex-wrap:wrap; gap:9px; margin:32px 0 8px;}
+.filter-chip{
+  font-family:var(--font-mono); font-size:12px; color:var(--text-dim); background:var(--bg-alt);
+  border:1px solid var(--border); padding:7px 15px; border-radius:20px; cursor:pointer; transition:all .2s ease;
+}
+.filter-chip:hover{border-color:var(--accent); color:var(--text);}
+.filter-chip.active{border-color:var(--accent); color:var(--accent); background:var(--accent-soft); box-shadow:0 0 14px rgba(79,224,208,.2);}
+.proj-card.filtered-out{display:none;}
+
+/* ---------- back to top ---------- */
+.back-to-top{
+  position:fixed; left:24px; bottom:24px; z-index:110;
+  width:42px; height:42px; border-radius:50%; background:var(--surface); border:1px solid var(--border);
+  color:var(--text-dim); display:flex; align-items:center; justify-content:center; cursor:pointer;
+  font-size:16px; box-shadow:0 10px 26px -10px rgba(0,0,0,.55);
+  opacity:0; transform:translateY(10px) scale(.9); pointer-events:none;
+  transition:all .25s ease;
+}
+.back-to-top.show{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+.back-to-top:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-3px);}
+@media (max-width:520px){ .back-to-top{left:14px; bottom:14px; width:38px; height:38px;} }
+
+[hidden]{display:none !important;}
+
+/* ---------- skill proficiency radar ---------- */
+.skill-radar-wrap{
+  border:1px solid var(--border); border-radius:14px; background:var(--surface);
+  padding:36px; display:grid; grid-template-columns:.9fr 1.1fr; gap:36px; align-items:center; margin-bottom:36px;
+}
+.skill-radar-svg{width:100%; height:auto;}
+.skill-radar-poly{transition:opacity .3s ease;}
+.skill-radar-point{cursor:pointer;}
+.skill-radar-point:hover circle{r:6;}
+.skill-radar-legend{display:flex; flex-direction:column; gap:4px;}
+.skill-radar-row{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 4px;
+  border-bottom:1px solid var(--border-soft); font-family:var(--font-mono); font-size:13px; color:var(--text-dim);
+  cursor:default; transition:color .2s ease;
+}
+.skill-radar-row:last-child{border-bottom:none;}
+.skill-radar-row.active{color:var(--text);}
+.skill-radar-row .srr-bar{flex:1; height:4px; background:var(--border-soft); border-radius:2px; overflow:hidden; margin:0 12px;}
+.skill-radar-row .srr-fill{height:100%; background:linear-gradient(90deg,var(--accent),var(--violet)); border-radius:2px; width:0; transition:width 1.1s cubic-bezier(.2,.7,.2,1);}
+.skill-radar-row.active .srr-fill{}
+.skill-radar-row .srr-val{color:var(--accent); font-size:11.5px; width:34px; text-align:right;}
+@media (max-width:800px){ .skill-radar-wrap{grid-template-columns:1fr;} }
+
+/* ---------- keyboard shortcuts overlay ---------- */
+.shortcuts-overlay{
+  position:fixed; inset:0; z-index:200; background:rgba(0,0,0,.6); backdrop-filter:blur(4px);
+  display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s ease;
+}
+.shortcuts-overlay.open{opacity:1; pointer-events:auto;}
+.shortcuts-modal{
+  width:min(420px,88vw); background:var(--surface); border:1px solid var(--border); border-radius:14px;
+  padding:28px 30px; box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
+  transform:translateY(10px) scale(.97); transition:transform .2s ease;
+}
+.shortcuts-overlay.open .shortcuts-modal{transform:translateY(0) scale(1);}
+.shortcuts-modal h4{font-family:var(--font-display); font-size:19px; margin-bottom:18px;}
+.shortcuts-row{display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--border-soft); font-size:13.5px; color:var(--text-dim);}
+.shortcuts-row:last-child{border-bottom:none;}
+.shortcuts-row kbd{font-family:var(--font-mono); font-size:11.5px; color:var(--text); background:var(--bg-alt); border:1px solid var(--border); border-radius:5px; padding:3px 8px;}
+
+/* ---------- konami easter egg ---------- */
+.konami-banner{
+  position:fixed; top:18px; left:50%; transform:translateX(-50%) translateY(-90px); z-index:300;
+  font-family:var(--font-mono); font-size:12.5px; color:var(--accent); background:var(--surface);
+  border:1px solid var(--accent); padding:10px 20px; border-radius:8px; box-shadow:0 0 24px rgba(79,224,208,.35);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.konami-banner.show{transform:translateX(-50%) translateY(0);}
 </style>
 </head>
 <body>
@@ -678,11 +965,19 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
     <a href="#top" class="logo"><span class="node"></span>BHIM.RAJBHAR</a>
     <div class="navlinks">
       <a href="#about">About</a>
+      <a href="#expertise">Expertise</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
     </div>
+    <button class="cmdk-trigger" id="cmdkTrigger" aria-label="Open command palette">
+      <span>Quick nav</span><kbd>⌘K</kbd>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+      <span class="theme-icon theme-icon-sun">☀</span>
+      <span class="theme-icon theme-icon-moon">☾</span>
+    </button>
     <a href="#contact" class="nav-cta">Contact →</a>
     <a href="Bhim_Rajbhar_Resume.pdf" download class="nav-cta" style="margin-left:10px;">Resume ↓</a>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu">
@@ -693,12 +988,28 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about">About</a>
+  <a href="#expertise">Expertise</a>
   <a href="#experience">Experience</a>
   <a href="#projects">Projects</a>
   <a href="#skills">Skills</a>
   <a href="#education">Education</a>
   <a href="#contact">Contact</a>
   <a href="Bhim_Rajbhar_Resume.pdf" download>Download Resume ↓</a>
+  <button class="theme-toggle theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle light/dark theme">
+    <span class="theme-icon theme-icon-sun">☀</span> <span class="theme-icon theme-icon-moon">☾</span> Toggle theme
+  </button>
+</div>
+
+<!-- COMMAND PALETTE -->
+<div class="cmdk-overlay" id="cmdkOverlay">
+  <div class="cmdk-modal" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="cmdk-input-row">
+      <span class="cmdk-prompt">›</span>
+      <input type="text" class="cmdk-input" id="cmdkInput" placeholder="Jump to a section or run a command…" autocomplete="off">
+      <kbd>esc</kbd>
+    </div>
+    <div class="cmdk-results" id="cmdkResults"></div>
+  </div>
 </div>
 
 <!-- AI TERMINAL -->
@@ -710,13 +1021,14 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
   <div class="ai-terminal-header">
     <div class="ai-terminal-title">
       <span class="ai-dots"><span></span><span></span><span></span></span>
-      bhim-assistant — zsh
+      bhim-assistant · zsh
     </div>
     <button class="ai-close" id="aiClose" aria-label="Close terminal">✕</button>
   </div>
   <div class="ai-terminal-body" id="aiBody"></div>
   <div class="ai-suggestions" id="aiSuggestions">
     <span class="ai-chip" data-q="experience">experience</span>
+    <span class="ai-chip" data-q="roles">roles</span>
     <span class="ai-chip" data-q="projects">projects</span>
     <span class="ai-chip" data-q="skills">skills</span>
     <span class="ai-chip" data-q="why hire you">why hire you?</span>
@@ -728,18 +1040,33 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
   </div>
 </div>
 
+<!-- KEYBOARD SHORTCUTS OVERLAY -->
+<div class="shortcuts-overlay" id="shortcutsOverlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts" aria-hidden="true">
+  <div class="shortcuts-modal">
+    <h4>Keyboard shortcuts</h4>
+    <div class="shortcuts-row"><span>Command palette</span><kbd>⌘ / Ctrl + K</kbd></div>
+    <div class="shortcuts-row"><span>Ask the AI assistant</span><kbd>/</kbd></div>
+    <div class="shortcuts-row"><span>Toggle this cheatsheet</span><kbd>?</kbd></div>
+    <div class="shortcuts-row"><span>Toggle theme</span><kbd>T</kbd></div>
+    <div class="shortcuts-row"><span>Close any overlay</span><kbd>Esc</kbd></div>
+  </div>
+</div>
+
+<div class="konami-banner" id="konamiBanner">⚡ Secret route unlocked. You found the Konami code.</div>
+
+
 <main id="top">
 
   <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow hero-kicker load-in" style="animation-delay:.05s">AI / ML ENGINEER — MUMBAI, INDIA</div>
+        <div class="eyebrow hero-kicker load-in" style="animation-delay:.05s">AI / ML ENGINEER · MUMBAI, INDIA</div>
         <h1 class="load-in" style="animation-delay:.15s">Bhim Rajbhar builds systems that <em>reason</em>, retrieve, and route.</h1>
         <div class="hero-role load-in" style="animation-delay:.28s">Specializing in&nbsp;<span class="typed-accent" id="typed"></span></div>
         <p class="hero-desc load-in" style="animation-delay:.4s">
-          3.8+ years designing and deploying <strong>machine learning, computer vision, and agentic AI systems</strong> end to end —
-          from LangGraph orchestration and FAISS-backed retrieval to production APIs monitored in Docker and Kubernetes.
+          3.8+ years working across <strong>machine learning, data science, computer vision, NLP, and agentic AI</strong> end to end,
+          from SQL and statistical modeling to LangGraph orchestration, FAISS-backed retrieval, and production APIs monitored in Docker and Kubernetes.
           Currently pursuing an MCA in AI/ML while shipping generative AI features for an EdTech platform.
         </p>
         <div class="hero-actions load-in" style="animation-delay:.52s">
@@ -755,7 +1082,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
         </div>
       </div>
 
-      <div class="graph-box load-in" id="graphBox" style="animation-delay:.3s">
+      <div class="graph-box hud-frame always-on load-in" id="graphBox" style="animation-delay:.3s">
         <div class="scan-line"></div>
         <svg viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
@@ -815,7 +1142,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
             <text x="200" y="398">RESPONSE</text>
           </g>
         </svg>
-        <div class="graph-label">// multi-agent orchestration — langgraph</div>
+        <div class="graph-label">// multi-agent orchestration · langgraph</div>
       </div>
     </div>
   </section>
@@ -846,19 +1173,19 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
           <div class="eyebrow">About</div>
           <h2 class="section-title reveal">From data warehouses to agent graphs</h2>
           <div class="about-text reveal" style="margin-top:22px;">
-            <p>I'm an <strong>AI/ML Engineer</strong> based in Mumbai, currently completing a Master's in Computer Applications specialized in AI/ML. Over the last 3.8+ years I've worked across the full ML lifecycle — from cleaning transactional retail data at Fortune 500 scale to designing multi-agent systems that route, retrieve, and respond.</p>
-            <p>At <strong>TCS</strong>, I built computer vision models to automate visual quality inspection, trained demand-forecasting models (ARIMA, LSTM, Prophet), and shipped everything through Docker and FastAPI with Prometheus-based drift monitoring — catching model degradation before it became a business problem.</p>
-            <p>Lately my focus has shifted toward <strong>agentic AI</strong>: LangGraph orchestration, FAISS-backed RAG, and the guardrails needed to make LLM systems safe to deploy — intent classification, PII redaction, and rule-based routing across specialist agents.</p>
+            <p>I'm an <strong>AI/ML Engineer</strong> based in Mumbai, currently completing a Master's in Computer Applications specialized in AI/ML. Over the last 3.8+ years I've worked across the full ML lifecycle, from cleaning transactional retail data at Fortune 500 scale to designing multi-agent systems that route, retrieve, and respond.</p>
+            <p>At <strong>TCS</strong>, I built computer vision models to automate visual quality inspection, trained demand-forecasting models (ARIMA, LSTM, Prophet), and shipped everything through Docker and FastAPI with Prometheus-based drift monitoring that caught model degradation before it became a business problem.</p>
+            <p>Lately my focus has shifted toward <strong>agentic AI</strong>: LangGraph orchestration, FAISS-backed RAG, and the guardrails needed to make LLM systems safe to deploy: intent classification, PII redaction, and rule-based routing across specialist agents.</p>
           </div>
         </div>
         <div class="facts reveal stagger">
           <div class="fact">
             <div class="eyebrow">Currently</div>
-            <p><strong>ML Intern</strong> at SmartED Innovations — building GenAI &amp; LLM agent features for an EdTech platform with LangChain and the OpenAI API.</p>
+            <p><strong>ML Intern</strong> at SmartED Innovations, building GenAI &amp; LLM agent features for an EdTech platform with LangChain and the OpenAI API.</p>
           </div>
           <div class="fact">
             <div class="eyebrow">Education</div>
-            <p><strong>MCA, AI/ML</strong> — Uttaranchal University, Dehradun (2025–Present).</p>
+            <p><strong>MCA, AI/ML</strong>: Uttaranchal University, Dehradun (2025–Present).</p>
           </div>
           <div class="fact">
             <div class="eyebrow">Certified</div>
@@ -866,8 +1193,69 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
           </div>
           <div class="fact">
             <div class="eyebrow">Base</div>
-            <p>Mumbai, India — open to remote &amp; relocation for the right ML/AI role.</p>
+            <p>Mumbai, India. Open to remote &amp; relocation for the right ML/AI role.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLE EXPERTISE -->
+  <section class="section" id="expertise">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Range</div>
+        <h2 class="section-title">One skill set, eight job titles</h2>
+        <p class="section-sub">The roles below aren't aspirational. Each one maps to work Bhim has actually shipped, at TCS or SmartED, or in a portfolio project.</p>
+      </div>
+      <div class="expertise-grid reveal stagger">
+        <div class="expertise-card">
+          <div class="expertise-num">01</div>
+          <h4>Machine Learning Engineer</h4>
+          <p>Designed and deployed classification, regression, and time-series models, then shipped them to production with Docker, FastAPI, and Kubernetes, with MLflow tracking and Prometheus drift monitoring.</p>
+          <div class="expertise-tags"><span>Scikit-learn</span><span>Docker</span><span>MLflow</span></div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-num">02</div>
+          <h4>Data Scientist</h4>
+          <p>Ran the full analysis lifecycle at TCS: hypothesis testing, feature engineering, and ARIMA/LSTM/Prophet demand forecasting, translating retail data into decisions non-technical stakeholders could act on.</p>
+          <div class="expertise-tags"><span>ARIMA/LSTM</span><span>Hypothesis Testing</span><span>Prophet</span></div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-num">03</div>
+          <h4>Data Analyst</h4>
+          <p>Wrote SQL against a PostgreSQL warehouse for store, SKU, and supplier-level reporting, keeping heavy aggregation in-database and holding a Microsoft Power BI Data Analyst Associate certification.</p>
+          <div class="expertise-tags"><span>SQL</span><span>PostgreSQL</span><span>Power BI</span></div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-num">04</div>
+          <h4>Generative AI Engineer</h4>
+          <p>Builds LangGraph-orchestrated agents backed by FAISS/ChromaDB retrieval, with guardrails for PII redaction and intent classification, plus GenAI features shipped for an EdTech platform at SmartED.</p>
+          <div class="expertise-tags"><span>LangGraph</span><span>RAG</span><span>OpenAI API</span></div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-num">05</div>
+          <h4>Deep Learning Engineer</h4>
+          <p>Trained a ResNet50 CNN at 94% accuracy for medical imaging and a custom ANN outperforming baselines by 6% on tabular data, built with TensorFlow and PyTorch and made interpretable with SHAP.</p>
+          <div class="expertise-tags"><span>PyTorch</span><span>TensorFlow</span><span>SHAP</span></div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-num">06</div>
+          <h4>NLP Engineer</h4>
+          <p>Built text classification and named-entity extraction with spaCy and BERT to parse supplier documents and route support tickets at TCS, and intent classifiers that route user queries across agents.</p>
+          <div class="expertise-tags"><span>spaCy</span><span>BERT</span><span>NER</span></div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-num">07</div>
+          <h4>Computer Vision Engineer</h4>
+          <p>Automated visual quality inspection with OpenCV and YOLO at TCS, then productionized a YOLOv8 defect-detection pipeline with a FastAPI inference service and a Streamlit monitoring dashboard.</p>
+          <div class="expertise-tags"><span>YOLOv8</span><span>OpenCV</span><span>FastAPI</span></div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-num">08</div>
+          <h4>AI Engineer</h4>
+          <p>Owns the system-level view: routing logic, tool-calling agents, retrieval, and guardrails working together end to end, deployed and monitored across AWS, Azure, and GCP rather than left in a notebook.</p>
+          <div class="expertise-tags"><span>Multi-Agent Systems</span><span>AWS · Azure · GCP</span><span>CI/CD</span></div>
         </div>
       </div>
     </div>
@@ -882,21 +1270,55 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
         <p class="section-sub">Two roles, one throughline: turning ambiguous business problems into deployed, monitored ML systems.</p>
       </div>
 
+      <div class="trajectory-chart reveal" id="trajectoryChart">
+        <svg viewBox="0 0 700 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="trajGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#4FE0D0"/>
+              <stop offset="100%" stop-color="#8B7CF6"/>
+            </linearGradient>
+          </defs>
+          <g stroke="var(--border-soft)" stroke-width="1">
+            <line x1="40" y1="30" x2="660" y2="30"/>
+            <line x1="40" y1="75" x2="660" y2="75"/>
+            <line x1="40" y1="120" x2="660" y2="120"/>
+          </g>
+          <path class="trajectory-path" d="M70 120 C 220 120, 260 62, 360 62 C 460 62, 500 28, 630 28" fill="none" stroke="url(#trajGrad)" stroke-width="2.4" stroke-linecap="round"/>
+          <g class="trajectory-milestone">
+            <circle cx="70" cy="120" r="6" fill="#0B1017" stroke="#4FE0D0" stroke-width="2"/>
+            <text x="70" y="145" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="var(--text)">12/2021</text>
+            <text x="70" y="160" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--text-faint)">Programmer, TCS</text>
+          </g>
+          <g class="trajectory-milestone">
+            <circle cx="360" cy="62" r="6" fill="#0B1017" stroke="#4FE0D0" stroke-width="2"/>
+            <text x="360" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="var(--text)">07/2025</text>
+            <text x="360" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--text-faint)">System Engineer, TCS</text>
+          </g>
+          <g class="trajectory-milestone">
+            <circle cx="630" cy="28" r="6.5" fill="#0B1017" stroke="#8B7CF6" stroke-width="2"/>
+            <text x="618" y="52" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10.5" fill="var(--text)">06/2026 → Present</text>
+            <text x="618" y="66" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--text-faint)">ML Intern, SmartED</text>
+          </g>
+        </svg>
+      </div>
+
       <div class="timeline">
         <div class="tl-item reveal">
           <div class="tl-node"></div>
           <div class="tl-head">
             <span class="tl-role">Data Scientist</span>
-            <span class="tl-date">12/2021 — 07/2025</span>
+            <span class="tl-date">12/2021–07/2025</span>
           </div>
           <div class="tl-org">Tata Consultancy Services Limited · Mumbai, India</div>
           <ul class="tl-list">
             <li>Designed and deployed classification, regression, and computer vision models (OpenCV, YOLO) to automate manual visual quality-inspection steps for a Fortune 500 retail client's supply chain.</li>
             <li>Trained store-level inventory replenishment models with Scikit-learn, tuning hyperparameters via cross-validation and evaluating with accuracy, precision, recall, and F1.</li>
             <li>Built ARIMA, LSTM, and Prophet time-series models for demand forecasting, validating shifts with hypothesis testing before they reached production decisions.</li>
+            <li>Built text classification and named-entity extraction models (spaCy, BERT) to parse supplier documents and route incoming support tickets, cutting down on manual triage.</li>
             <li>Shipped models to production with Docker and FastAPI inside CI/CD; implemented Prometheus drift monitoring that caught degradation after a holiday-driven buying-pattern shift.</li>
-            <li>Wrote SQL against a PostgreSQL warehouse for store/SKU/supplier data, keeping heavy aggregation in-database.</li>
+            <li>Wrote SQL against a PostgreSQL warehouse for store/SKU/supplier data, keeping heavy aggregation in-database instead of pulling raw tables into Python.</li>
             <li>Tracked experiments with MLflow and Weights &amp; Biases; orchestrated workloads with Kubernetes across AWS, Azure, and GCP.</li>
+            <li>Worked directly with supply-chain and merchandising stakeholders to turn loosely defined asks into scoped modeling problems, and presented findings in terms they could act on without a data-science background.</li>
           </ul>
         </div>
 
@@ -904,13 +1326,14 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
           <div class="tl-node"></div>
           <div class="tl-head">
             <span class="tl-role">Machine Learning Intern</span>
-            <span class="tl-date">06/2026 — Present</span>
+            <span class="tl-date">06/2026–Present</span>
           </div>
           <div class="tl-org">SmartED Innovations · Remote</div>
           <ul class="tl-list">
-            <li>Contributing across the ML lifecycle for an EdTech platform — data preprocessing through model experimentation.</li>
-            <li>Building hands-on depth in TensorFlow and PyTorch model development alongside Pandas/Scikit-learn pipelines.</li>
+            <li>Contributing across the ML lifecycle for an EdTech platform: data ingestion and preprocessing, model experimentation, and evaluation.</li>
+            <li>Building data pipelines that clean and structure raw platform data before it reaches any model, alongside hands-on TensorFlow and PyTorch model development.</li>
             <li>Prototyping Generative AI and LLM agent features with LangChain and the OpenAI API for education use cases.</li>
+            <li>Evaluating new ML and LLM techniques and tooling as they come up, and bringing what's actually useful back into the team's day-to-day workflow.</li>
           </ul>
         </div>
       </div>
@@ -923,7 +1346,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
       <div class="section-head reveal">
         <div class="eyebrow">Featured Work</div>
         <h2 class="section-title">Projects</h2>
-        <p class="section-sub">Systems built to be safe, observable, and useful — not just accurate.</p>
+        <p class="section-sub">Systems built to be safe, observable, and useful, not just accurate.</p>
       </div>
 
       <div class="feature-card glow-card reveal">
@@ -957,6 +1380,17 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
             <circle cx="160" cy="120" r="11" fill="#0B1017" stroke="#4FE0D0" stroke-width="1.4"/>
             <circle cx="260" cy="120" r="11" fill="#0B1017" stroke="#4FE0D0" stroke-width="1.4"/>
             <circle cx="160" cy="178" r="12" fill="#0B1017" stroke="#4FE0D0" stroke-width="1.5"/>
+            <g fill="#F0B86E">
+              <circle r="2.6" cx="160" cy="24" filter="url(#glow)">
+                <animateMotion dur="2.6s" repeatCount="indefinite" path="M0 0 L0 42 L-100 96 L0 154"/>
+              </circle>
+              <circle r="2.6" cx="160" cy="24" filter="url(#glow)">
+                <animateMotion dur="2.9s" begin=".6s" repeatCount="indefinite" path="M0 0 L0 42 L0 96 L0 154"/>
+              </circle>
+              <circle r="2.6" cx="160" cy="24" filter="url(#glow)">
+                <animateMotion dur="2.7s" begin="1.2s" repeatCount="indefinite" path="M0 0 L0 42 L100 96 L0 154"/>
+              </circle>
+            </g>
             <g font-family="JetBrains Mono, monospace" font-size="8.5" fill="#8B98A5" text-anchor="middle">
               <text x="160" y="10">USER</text>
               <text x="160" y="98">INTENT ROUTER</text>
@@ -969,15 +1403,64 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
         </div>
       </div>
 
+      <div class="filter-bar reveal" id="projFilterBar">
+        <span class="filter-chip active" data-filter="all">All</span>
+        <span class="filter-chip" data-filter="cv">Computer Vision</span>
+        <span class="filter-chip" data-filter="agentic">Agentic AI</span>
+        <span class="filter-chip" data-filter="timeseries">Time-Series</span>
+        <span class="filter-chip" data-filter="healthcare">Healthcare</span>
+        <span class="filter-chip" data-filter="hackathon">Hackathon</span>
+      </div>
+
       <div class="proj-grid reveal stagger">
-        <div class="proj-card glow-card">
+        <div class="proj-card glow-card" data-tags="cv healthcare">
+          <div class="card-glare"></div>
+          <div class="eyebrow">GitHub Project</div>
+          <h4>Disease Prediction &amp; Medical Diagnosis System</h4>
+          <p>A production-grade diagnosis system combining a ResNet50 CNN (94% accuracy) for imaging with a custom ANN that outperforms baseline classifiers by 6% on tabular clinical data, plus SHAP explainability so predictions stay interpretable to clinicians.</p>
+          <div class="metric-viz" id="diseaseMetricViz">
+            <div class="metric-gauge" id="diseaseGauge" style="--gauge-offset:12.8;">
+              <svg viewBox="0 0 78 78">
+                <circle class="gauge-track" cx="39" cy="39" r="34"/>
+                <circle class="gauge-fill" cx="39" cy="39" r="34"/>
+              </svg>
+              <div class="gauge-num">94%</div>
+            </div>
+            <div class="metric-bars">
+              <div>
+                <div class="metric-label"><span>Baseline classifier</span><span>reference</span></div>
+                <div class="metric-track"><div class="metric-fill baseline"></div></div>
+              </div>
+              <div>
+                <div class="metric-label"><span>Custom ANN</span><span>+6%</span></div>
+                <div class="metric-track"><div class="metric-fill improved"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-stack"><span>ResNet50</span><span>SHAP</span><span>FastAPI</span><span>Docker</span><span>MLflow</span></div>
+        </div>
+        <div class="proj-card glow-card" data-tags="cv">
+          <div class="card-glare"></div>
+          <div class="eyebrow">Targeting Hitachi Energy AI/ML Engineer</div>
+          <h4>Industrial Defect Detection System</h4>
+          <p>A YOLOv8-based computer vision pipeline for automated visual defect detection, packaged for Industry 4.0 deployment with a FastAPI inference service, a Streamlit monitoring dashboard, MLflow experiment tracking, and GitHub Actions CI.</p>
+          <div class="proj-stack"><span>YOLOv8</span><span>FastAPI</span><span>Docker</span><span>MLflow</span><span>CI/CD</span></div>
+        </div>
+        <div class="proj-card glow-card" data-tags="timeseries">
+          <div class="card-glare"></div>
+          <div class="eyebrow">Targeting Honeywell Data Scientist I</div>
+          <h4>Turbofan Predictive Maintenance (RUL)</h4>
+          <p>A Remaining Useful Life prediction pipeline on NASA's CMAPSS FD001 turbofan dataset. Statistical EDA and feature engineering feed Linear Regression, Random Forest, and XGBoost models, with a Streamlit app that simulates the cost savings of predictive vs. reactive maintenance.</p>
+          <div class="proj-stack"><span>XGBoost</span><span>Random Forest</span><span>FastAPI</span><span>Streamlit</span></div>
+        </div>
+        <div class="proj-card glow-card" data-tags="hackathon">
           <div class="card-glare"></div>
           <div class="eyebrow">Hackathon Build</div>
           <h4>KSP Crime Intelligence Chatbot</h4>
           <p>A multilingual crime-intelligence assistant built for a police-department hackathon challenge: natural-language querying over crime data, 7-language support, voice input/output, interactive visualizations, and auto-generated PDF reports.</p>
           <div class="proj-stack"><span>React</span><span>NLP</span><span>Multilingual</span><span>Data Viz</span></div>
         </div>
-        <div class="proj-card glow-card">
+        <div class="proj-card glow-card" data-tags="cv timeseries hackathon">
           <div class="card-glare"></div>
           <div class="eyebrow">ISRO · BAH 2026 Proposal</div>
           <h4>Satellite-Based Crop &amp; Irrigation Advisory</h4>
@@ -985,6 +1468,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
           <div class="proj-stack"><span>CNN</span><span>LSTM</span><span>XGBoost</span><span>Remote Sensing</span></div>
         </div>
       </div>
+      <p class="cmdk-empty" id="projEmptyMsg" style="display:none;">No projects match this filter yet.</p>
     </div>
   </section>
 
@@ -994,50 +1478,67 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
       <div class="section-head reveal">
         <div class="eyebrow">Skills</div>
         <h2 class="section-title">The stack, by layer</h2>
-        <p class="section-sub">Organized the way the systems themselves are layered — from orchestration down to infrastructure.</p>
+        <p class="section-sub">Organized the way the systems themselves are layered, from orchestration down to infrastructure.</p>
+      </div>
+
+      <div class="skill-radar-wrap reveal">
+        <svg class="skill-radar-svg" id="skillRadarSvg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g id="radarRings"></g>
+          <g id="radarAxes"></g>
+          <polygon id="radarPoly" class="skill-radar-poly" points="" fill="rgba(79,224,208,.16)" stroke="#4FE0D0" stroke-width="1.6"/>
+          <g id="radarPoints"></g>
+          <g id="radarLabels" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B98A5" text-anchor="middle"></g>
+        </svg>
+        <div class="skill-radar-legend" id="skillRadarLegend"></div>
       </div>
 
       <div class="skills-grid reveal stagger">
-        <div class="skill-block">
+        <div class="skill-block hud-frame">
           <div class="eyebrow">Agentic AI &amp; LLM</div>
           <div class="chip-row">
             <span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">RAG</span>
-            <span class="chip">FAISS / ChromaDB</span><span class="chip">Prompt Engineering</span><span class="chip">OpenAI API</span>
+            <span class="chip">FAISS / ChromaDB</span><span class="chip">Multi-Agent Orchestration</span><span class="chip">Tool-Calling Agents</span>
+            <span class="chip">Prompt Engineering</span><span class="chip">OpenAI API</span>
             <span class="chip">Anthropic API</span><span class="chip">Guardrails / PII Redaction</span>
           </div>
         </div>
-        <div class="skill-block">
+        <div class="skill-block hud-frame">
           <div class="eyebrow">ML &amp; Deep Learning</div>
           <div class="chip-row">
             <span class="chip">Scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">PyTorch</span>
-            <span class="chip">XGBoost / LightGBM</span><span class="chip">ARIMA / LSTM / Prophet</span><span class="chip">Hyperparameter Tuning</span>
+            <span class="chip">XGBoost / LightGBM</span><span class="chip">Random Forest</span><span class="chip">Ensemble Methods</span>
+            <span class="chip">ARIMA / LSTM / Prophet</span><span class="chip">Hyperparameter Tuning</span><span class="chip">Model Interpretability (SHAP)</span>
           </div>
         </div>
-        <div class="skill-block">
+        <div class="skill-block hud-frame">
           <div class="eyebrow">Computer Vision &amp; NLP</div>
           <div class="chip-row">
             <span class="chip">OpenCV</span><span class="chip">YOLOv8</span><span class="chip">ResNet50</span>
             <span class="chip">BERT / Transformers</span><span class="chip">spaCy / NLTK</span>
+            <span class="chip">Named Entity Recognition</span><span class="chip">Text Classification</span>
           </div>
         </div>
-        <div class="skill-block">
+        <div class="skill-block hud-frame">
           <div class="eyebrow">MLOps &amp; Deployment</div>
           <div class="chip-row">
             <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">FastAPI</span>
-            <span class="chip">CI/CD (GitHub Actions)</span><span class="chip">MLflow</span><span class="chip">Prometheus</span>
+            <span class="chip">CI/CD (GitHub Actions)</span><span class="chip">MLflow</span><span class="chip">Weights &amp; Biases</span>
+            <span class="chip">Prometheus</span><span class="chip">Drift Monitoring</span><span class="chip">Streamlit</span>
           </div>
         </div>
-        <div class="skill-block">
+        <div class="skill-block hud-frame">
           <div class="eyebrow">Data &amp; Analytics</div>
           <div class="chip-row">
             <span class="chip">Python</span><span class="chip">Pandas / NumPy</span><span class="chip">SQL (PostgreSQL)</span>
             <span class="chip">Hypothesis Testing</span><span class="chip">Feature Engineering</span>
+            <span class="chip">Data Visualization</span><span class="chip">Power BI</span>
           </div>
         </div>
-        <div class="skill-block">
+        <div class="skill-block hud-frame">
           <div class="eyebrow">Cloud Platforms</div>
           <div class="chip-row">
             <span class="chip">AWS</span><span class="chip">Microsoft Azure</span><span class="chip">Google Cloud Platform</span>
+            <span class="chip">Multi-Cloud Kubernetes</span><span class="chip">Cloud ML Deployment</span>
           </div>
         </div>
       </div>
@@ -1056,7 +1557,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
           <div class="flip-inner">
             <div class="cert-card flip-front">
               <div class="card-glare"></div>
-              <h4>Google Cloud — Professional Machine Learning Engineer</h4>
+              <h4>Google Cloud: Professional Machine Learning Engineer</h4>
               <p>Building, evaluating, and productionizing ML models on GCP, including responsible AI practices and large-scale workflows.</p>
               <span class="flip-hint">Hover to verify ↻</span>
             </div>
@@ -1076,7 +1577,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
           <div class="flip-inner">
             <div class="cert-card flip-front">
               <div class="card-glare"></div>
-              <h4>Microsoft — Azure Data Scientist Associate</h4>
+              <h4>Microsoft: Azure Data Scientist Associate</h4>
               <p>Designing ML solutions, running experiments, training and deploying models, and optimizing language models on Azure.</p>
               <span class="flip-hint">Hover to verify ↻</span>
             </div>
@@ -1096,7 +1597,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
           <div class="flip-inner">
             <div class="cert-card flip-front">
               <div class="card-glare"></div>
-              <h4>Microsoft — Power BI Data Analyst Associate</h4>
+              <h4>Microsoft: Power BI Data Analyst Associate</h4>
               <p>Data preparation, modeling, visualization, and administration for enterprise reporting workflows.</p>
               <span class="flip-hint">Hover to verify ↻</span>
             </div>
@@ -1127,8 +1628,8 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
         <div class="tl-item reveal">
           <div class="tl-node"></div>
           <div class="tl-head">
-            <span class="tl-role">Master of Computer Applications — AI/ML</span>
-            <span class="tl-date">08/2025 — Present</span>
+            <span class="tl-role">Master of Computer Applications (MCA), AI/ML</span>
+            <span class="tl-date">08/2025–Present</span>
           </div>
           <div class="tl-org">Uttaranchal University · Dehradun, India</div>
           <ul class="tl-list">
@@ -1138,18 +1639,24 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
         <div class="tl-item reveal">
           <div class="tl-node"></div>
           <div class="tl-head">
-            <span class="tl-role">B.Sc. Information Technology</span>
-            <span class="tl-date">06/2018 — 07/2021</span>
+            <span class="tl-role">Bachelor of Science (B.Sc.), Information Technology</span>
+            <span class="tl-date">06/2018–07/2021</span>
           </div>
           <div class="tl-org">University of Mumbai · Mumbai, India</div>
+          <ul class="tl-list">
+            <li>A three-year, six-semester undergraduate degree covering programming (Python, Java), data structures, computer networks, database management, software engineering, and computer graphics, with a compulsory final-year project.</li>
+          </ul>
         </div>
         <div class="tl-item reveal">
           <div class="tl-node"></div>
           <div class="tl-head">
-            <span class="tl-role">HSC — Computer Science</span>
-            <span class="tl-date">06/2016 — 03/2018</span>
+            <span class="tl-role">Higher Secondary Certificate (HSC), Computer Science</span>
+            <span class="tl-date">06/2016–03/2018</span>
           </div>
           <div class="tl-org">Maharashtra State Board</div>
+          <ul class="tl-list">
+            <li>Computer Science is a vocational/optional 200-marks course split into theory and practicals (Paper I and Paper II), building a core foundation in programming, operating systems, microprocessors, and web design.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1158,14 +1665,41 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
   <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <div class="wrap">
+      <div class="status-pill"><span class="pulse-dot"></span> Open to Machine Learning Engineer &amp; Data Scientist roles</div>
       <div class="eyebrow">Get In Touch</div>
       <h2>Let's build something that ships.</h2>
-      <p>Open to Machine Learning Engineer and Data Scientist roles — remote or Mumbai-based. I usually reply within a day.</p>
+      <p>Remote or on-site, anywhere. I usually reply within a day. Reach out directly, or send a message below.</p>
       <div class="contact-links">
         <a href="mailto:bhimrajbhar.ai.engineer@gmail.com" class="btn btn-primary" id="emailMeBtn">Email Me</a>
-        <a href="https://linkedin.com/in/bhimaiengineer" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
-        <a href="https://github.com/BhimAIEngineer" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+        <a href="https://linkedin.com/in/bhimaiengineer" target="_blank" rel="noopener" class="btn btn-ghost">Connect on LinkedIn</a>
+        <a href="https://github.com/BhimAIEngineer" target="_blank" rel="noopener" class="btn btn-ghost">View GitHub</a>
       </div>
+
+      <div class="contact-divider">or send a message directly</div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cfName">Name</label>
+            <input type="text" id="cfName" name="name" placeholder="Your name" required autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="cfEmail">Email</label>
+            <input type="email" id="cfEmail" name="email" placeholder="you@company.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="cfSubject">Subject</label>
+          <input type="text" id="cfSubject" name="subject" placeholder="e.g. ML Engineer role at [Company]" required>
+        </div>
+        <div class="form-field">
+          <label for="cfMessage">Message</label>
+          <textarea id="cfMessage" name="message" rows="5" placeholder="What are you looking to build?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message →</button>
+        <p class="form-note">Opens in your email client, addressed to bhimrajbhar.ai.engineer@gmail.com. Nothing is sent from this page directly.</p>
+        <p class="form-status" id="formStatus"></p>
+      </form>
     </div>
   </section>
 
@@ -1173,20 +1707,38 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
 
 <footer>
   <div class="wrap">
-    <div class="footer-links">
-      <span class="copyable" data-copy="bhimrajbhar.ai.engineer@gmail.com" title="Click to copy">bhimrajbhar.ai.engineer@gmail.com</span>
-      <span class="copyable" data-copy="+91 9653263727" title="Click to copy">+91 9653263727</span>
-      <a href="https://linkedin.com/in/bhimaiengineer" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/BhimAIEngineer" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://kaggle.com/bhimaiengineer" target="_blank" rel="noopener">Kaggle</a>
-      <a href="https://leetcode.com/u/bhim-rajbhar" target="_blank" rel="noopener">LeetCode</a>
-      <a href="Bhim_Rajbhar_Resume.pdf" download>Resume (PDF)</a>
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <div class="logo"><span class="node"></span>BHIM.RAJBHAR</div>
+        <p>AI/ML Engineer building multi-agent systems, RAG pipelines, and production ML. Currently completing an MCA in AI/ML while shipping GenAI features for an EdTech platform.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <span class="copyable" data-copy="bhimrajbhar.ai.engineer@gmail.com" title="Click to copy">bhimrajbhar.ai.engineer@gmail.com</span>
+        <span class="copyable" data-copy="+91 9653263727" title="Click to copy">+91 9653263727</span>
+        <a href="Bhim_Rajbhar_Resume.pdf" download>Resume (PDF) ↓</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Elsewhere</div>
+        <a href="https://linkedin.com/in/bhimaiengineer" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/BhimAIEngineer" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://kaggle.com/bhimaiengineer" target="_blank" rel="noopener">Kaggle</a>
+        <a href="https://leetcode.com/u/bhim-rajbhar" target="_blank" rel="noopener">LeetCode</a>
+      </div>
     </div>
-    <div class="footer-note">© 2026 Bhim Rajbhar. Mumbai, India.</div>
+    <div class="footer-bottom">
+      <div class="footer-note">© 2026 Bhim Rajbhar. Mumbai, India.</div>
+      <div class="footer-badges">
+        <span>Open to relocation</span>
+        <span>MCA @ Uttaranchal University</span>
+        <span>3× cloud certified</span>
+      </div>
+    </div>
   </div>
 </footer>
 
 <div class="copy-toast" id="copyToast">Copied to clipboard</div>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
 <script>
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1220,6 +1772,27 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
         t.classList.add('show');
         clearTimeout(window.__toastTimer);
         window.__toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+      }
+    });
+  }
+
+  // contact form: build a mailto: link from the fields (no backend on this
+  // static site, so this opens the visitor's own mail client pre-filled)
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm){
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('cfName').value.trim();
+      const email = document.getElementById('cfEmail').value.trim();
+      const subject = document.getElementById('cfSubject').value.trim();
+      const message = document.getElementById('cfMessage').value.trim();
+      const status = document.getElementById('formStatus');
+      const body = `${message}\n\n${name} (${email})`;
+      const mailto = `mailto:bhimrajbhar.ai.engineer@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+      if (status){
+        status.textContent = 'Opening your mail app with this message pre-filled…';
+        setTimeout(() => { status.textContent = ''; }, 5000);
       }
     });
   }
@@ -1366,7 +1939,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
 
   // typed rotating role text
   const typedEl = document.getElementById('typed');
-  const phrases = ['Multi-Agent Systems', 'RAG Pipelines', 'Computer Vision', 'MLOps & Deployment', 'Generative AI'];
+  const phrases = ['Machine Learning Engineering', 'Data Science', 'Data Analysis', 'Generative AI Engineering', 'Deep Learning', 'Natural Language Processing', 'Computer Vision', 'Applied AI Engineering'];
   let pI = 0, cI = 0, deleting = false;
   function typeLoop(){
     const current = phrases[pI];
@@ -1404,6 +1977,12 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
     });
   }, { threshold: 0.5 });
   counters.forEach(c => counterIO.observe(c));
+
+  // project metric visualizations (gauge + comparison bars)
+  const metricIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: .4 });
+  document.querySelectorAll('.metric-gauge, .metric-viz, .trajectory-chart').forEach(el => metricIO.observe(el));
 
   // subtle tilt on feature/proj cards
   document.querySelectorAll('.feature-card, .proj-card').forEach(card => {
@@ -1495,7 +2074,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
   });
 
   // text scramble effect for headings
-  const scrambleChars = '!<>-_\\/[]{}—=+*^?#________';
+  const scrambleChars = '!<>-_\\/[]{}~=+*^?#________';
   function scrambleInto(el, finalText, duration=650){
     let frame = 0;
     const totalFrames = Math.round(duration / 30);
@@ -1561,6 +2140,155 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
     }, { passive:true });
   }
 
+  // ---- theme toggle (light/dark) ----
+  (function themeToggleInit(){
+    const root = document.documentElement;
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const toggles = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')].filter(Boolean);
+    function current(){ return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+    function apply(theme){
+      if (theme === 'light') root.setAttribute('data-theme', 'light');
+      else root.removeAttribute('data-theme');
+      if (metaTheme) metaTheme.setAttribute('content', theme === 'light' ? '#F7F6F2' : '#07090D');
+      try { localStorage.setItem('theme', theme); } catch(e){}
+    }
+    function toggle(){ apply(current() === 'light' ? 'dark' : 'light'); }
+    toggles.forEach(btn => btn.addEventListener('click', toggle));
+    // sync theme-color meta on load in case anti-flash script already set data-theme
+    apply(current());
+  })();
+
+  // ---- back to top ----
+  (function backToTopInit(){
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+    function toggle(){ btn.classList.toggle('show', window.scrollY > 640); }
+    document.addEventListener('scroll', toggle, { passive:true });
+    toggle();
+    btn.addEventListener('click', () => window.scrollTo({ top:0, behavior: reduceMotion ? 'auto' : 'smooth' }));
+  })();
+
+  // ---- project filter chips ----
+  (function projectFilterInit(){
+    const bar = document.getElementById('projFilterBar');
+    if (!bar) return;
+    const chips = bar.querySelectorAll('.filter-chip');
+    const cards = document.querySelectorAll('.proj-grid .proj-card');
+    const emptyMsg = document.getElementById('projEmptyMsg');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const filter = chip.dataset.filter;
+        let visible = 0;
+        cards.forEach(card => {
+          const tags = (card.dataset.tags || '').split(' ');
+          const match = filter === 'all' || tags.includes(filter);
+          card.classList.toggle('filtered-out', !match);
+          if (match) visible++;
+        });
+        if (emptyMsg) emptyMsg.style.display = visible === 0 ? 'block' : 'none';
+      });
+    });
+  })();
+
+  // ---- command palette (Cmd/Ctrl+K) ----
+  (function commandPaletteInit(){
+    const overlay = document.getElementById('cmdkOverlay');
+    const input = document.getElementById('cmdkInput');
+    const results = document.getElementById('cmdkResults');
+    const trigger = document.getElementById('cmdkTrigger');
+    if (!overlay || !input || !results) return;
+
+    const commands = [
+      { label:'Go to About', hint:'section', run:() => go('#about') },
+      { label:'Go to Expertise', hint:'section', run:() => go('#expertise') },
+      { label:'Go to Experience', hint:'section', run:() => go('#experience') },
+      { label:'Go to Projects', hint:'section', run:() => go('#projects') },
+      { label:'Go to Skills', hint:'section', run:() => go('#skills') },
+      { label:'Go to Certifications', hint:'section', run:() => go('#certifications') },
+      { label:'Go to Education', hint:'section', run:() => go('#education') },
+      { label:'Go to Contact', hint:'section', run:() => go('#contact') },
+      { label:'Download résumé', hint:'pdf', run:() => { const a = document.createElement('a'); a.href = 'Bhim_Rajbhar_Resume.pdf'; a.download = ''; a.click(); } },
+      { label:'Copy email address', hint:'clipboard', run:() => copyText('bhimrajbhar.ai.engineer@gmail.com') },
+      { label:'Copy phone number', hint:'clipboard', run:() => copyText('+91 9653263727') },
+      { label:'Open GitHub profile', hint:'↗ external', run:() => window.open('https://github.com/BhimAIEngineer', '_blank', 'noopener') },
+      { label:'Open LinkedIn profile', hint:'↗ external', run:() => window.open('https://linkedin.com/in/bhimaiengineer', '_blank', 'noopener') },
+      { label:'Open Kaggle profile', hint:'↗ external', run:() => window.open('https://kaggle.com/bhimaiengineer', '_blank', 'noopener') },
+      { label:'Ask the AI assistant', hint:'terminal', run:() => { const t = document.getElementById('aiTrigger'); if (t) t.click(); } },
+      { label:'Toggle light/dark theme', hint:'⌘', run:() => { const t = document.getElementById('themeToggle'); if (t) t.click(); } },
+      { label:'Scroll to top', hint:'↑', run:() => window.scrollTo({ top:0, behavior: reduceMotion ? 'auto' : 'smooth' }) },
+    ];
+
+    function go(hash){
+      const target = document.querySelector(hash);
+      if (!target) return;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+      history.pushState(null, '', hash);
+    }
+    async function copyText(text){
+      try { await navigator.clipboard.writeText(text); } catch (e) {}
+      const t = document.getElementById('copyToast');
+      if (t){
+        t.textContent = 'Copied: ' + text;
+        t.classList.add('show');
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+      }
+    }
+
+    let activeIndex = 0;
+    let filtered = commands;
+
+    function render(){
+      results.innerHTML = '';
+      if (filtered.length === 0){
+        results.innerHTML = '<div class="cmdk-empty">No matching commands.</div>';
+        return;
+      }
+      filtered.forEach((cmd, i) => {
+        const row = document.createElement('div');
+        row.className = 'cmdk-item' + (i === activeIndex ? ' active' : '');
+        row.innerHTML = '<span>' + cmd.label + '</span><span class="hint">' + cmd.hint + '</span>';
+        row.addEventListener('mouseenter', () => { activeIndex = i; render(); });
+        row.addEventListener('click', () => runActive());
+        results.appendChild(row);
+      });
+    }
+    function runActive(){
+      const cmd = filtered[activeIndex];
+      if (cmd){ cmd.run(); close(); }
+    }
+    function filterCommands(){
+      const q = input.value.trim().toLowerCase();
+      filtered = !q ? commands : commands.filter(c => c.label.toLowerCase().includes(q));
+      activeIndex = 0;
+      render();
+    }
+    function open(){
+      overlay.classList.add('open');
+      input.value = '';
+      filterCommands();
+      setTimeout(() => input.focus(), 60);
+    }
+    function close(){ overlay.classList.remove('open'); }
+
+    trigger && trigger.addEventListener('click', open);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    input.addEventListener('input', filterCommands);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown'){ e.preventDefault(); activeIndex = Math.min(activeIndex + 1, filtered.length - 1); render(); }
+      else if (e.key === 'ArrowUp'){ e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0); render(); }
+      else if (e.key === 'Enter'){ e.preventDefault(); runActive(); }
+      else if (e.key === 'Escape'){ close(); }
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){ e.preventDefault(); overlay.classList.contains('open') ? close() : open(); }
+      else if (e.key === 'Escape' && overlay.classList.contains('open')){ close(); }
+    });
+  })();
+
   // ---- AI terminal (client-side FAQ assistant, no external calls) ----
   (function aiTerminalInit(){
     const trigger = document.getElementById('aiTrigger');
@@ -1573,28 +2301,50 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
 
     const kb = [
       { keys:['about','who','summary','bio','yourself','intro'],
-        answer:"Bhim Rajbhar is an AI/ML Engineer based in Mumbai with 3.8+ years of experience across the full ML lifecycle — from classical ML and computer vision to multi-agent LLM systems. Currently completing an MCA in AI/ML at Uttaranchal University." },
+        answer:"Bhim Rajbhar is an AI/ML Engineer based in Mumbai with 3.8+ years of experience across the full ML lifecycle, from classical ML and computer vision to multi-agent LLM systems. Currently completing an MCA in AI/ML at Uttaranchal University." },
+      { keys:['role','roles','job title','titles','expertise','range','positions'],
+        answer:"One skill set, eight job titles: Machine Learning Engineer, Data Scientist, Data Analyst, Generative AI Engineer, Deep Learning Engineer, NLP Engineer, Computer Vision Engineer, and AI Engineer. Each maps to real work at TCS, SmartED, or a portfolio project. See the Expertise section for specifics." },
+      { keys:['data scientist','data science'],
+        answer:"As a Data Scientist at TCS, Bhim ran the full analysis lifecycle: hypothesis testing, feature engineering, and ARIMA/LSTM/Prophet demand forecasting, turning retail data into decisions non-technical stakeholders could act on." },
+      { keys:['data analyst','data analysis','sql','power bi','dashboard'],
+        answer:"As a Data Analyst, Bhim writes SQL against a PostgreSQL warehouse for store/SKU/supplier-level reporting, keeping heavy aggregation in-database, and holds a Microsoft Power BI Data Analyst Associate certification." },
+      { keys:['generative ai','genai','llm engineer','prompt engineer'],
+        answer:"As a Generative AI Engineer, Bhim builds LangGraph-orchestrated agents backed by FAISS/ChromaDB retrieval, with guardrails for PII redaction and intent classification, plus GenAI features shipped for an EdTech platform at SmartED." },
+      { keys:['deep learning','dl engineer','neural network','cnn','ann'],
+        answer:"As a Deep Learning Engineer, Bhim trained a ResNet50 CNN at 94% accuracy for medical imaging and a custom ANN outperforming baselines by 6% on tabular data, built with TensorFlow and PyTorch and made interpretable with SHAP." },
+      { keys:['nlp','natural language processing','bert','spacy','text classification'],
+        answer:"As an NLP Engineer, Bhim built text classification and named-entity extraction with spaCy and BERT to parse supplier documents and route support tickets at TCS, plus intent classifiers that route queries across agents." },
+      { keys:['computer vision engineer','cv engineer','opencv'],
+        answer:"As a Computer Vision Engineer, Bhim automated visual quality inspection with OpenCV and YOLO at TCS, then productionized a YOLOv8 defect-detection pipeline with a FastAPI inference service and a Streamlit dashboard." },
+      { keys:['ai engineer','system design','orchestration'],
+        answer:"As an AI Engineer, Bhim owns the system-level view: routing logic, tool-calling agents, retrieval, and guardrails working together end to end, deployed and monitored across AWS, Azure, and GCP rather than left in a notebook." },
       { keys:['experience','work','job','career','tcs','smarted','intern'],
-        answer:"Experience:\n• Data Scientist @ TCS (12/2021–07/2025) — CV models for quality inspection, demand forecasting (ARIMA/LSTM/Prophet), production deployment with Docker/FastAPI, Prometheus drift monitoring.\n• ML Intern @ SmartED Innovations (06/2026–present) — GenAI & LLM agent features for EdTech using LangChain + OpenAI API." },
+        answer:"Experience:\n• Data Scientist @ TCS (12/2021–07/2025): CV models for quality inspection, demand forecasting (ARIMA/LSTM/Prophet), production deployment with Docker/FastAPI, Prometheus drift monitoring.\n• ML Intern @ SmartED Innovations (06/2026–present): GenAI & LLM agent features for EdTech using LangChain + OpenAI API." },
       { keys:['skill','stack','tech','tools','language','framework'],
         answer:"Core stack: Python, LangGraph, LangChain, RAG (FAISS/ChromaDB), TensorFlow, PyTorch, Scikit-learn, OpenCV/YOLOv8, FastAPI, Docker, Kubernetes, MLflow, AWS/Azure/GCP." },
       { keys:['project','healthcare','triage','ksp','isro','bah','agent','multi-agent','multiagent'],
-        answer:"Featured project: a LangGraph-orchestrated Multi-Agent Healthcare Triage Assistant with a FAISS-backed RAG agent, a scheduling agent, and an escalation agent — plus guardrails for PII redaction. Also built a multilingual KSP crime-intelligence chatbot and an ISRO BAH 2026 satellite crop-advisory proposal." },
+        answer:"Featured project: a LangGraph-orchestrated Multi-Agent Healthcare Triage Assistant with a FAISS-backed RAG agent, a scheduling agent, and an escalation agent, plus guardrails for PII redaction. Also on GitHub: a Disease Prediction & Medical Diagnosis System (ResNet50 + SHAP), a YOLOv8 Industrial Defect Detection System, and a Turbofan Predictive Maintenance / RUL pipeline on NASA CMAPSS data, plus a multilingual KSP crime-intelligence chatbot and an ISRO BAH 2026 satellite crop-advisory proposal." },
+      { keys:['defect','yolo','yolov8','hitachi','industrial','vision system'],
+        answer:"Industrial Defect Detection System: YOLOv8 object detection for automated visual quality inspection, served via FastAPI, containerized with Docker, tracked with MLflow, tested with GitHub Actions CI. Built targeting Industry 4.0 / Hitachi Energy-style AI/ML Engineer roles." },
+      { keys:['rul','remaining useful life','predictive maintenance','turbofan','honeywell','cmapss'],
+        answer:"Turbofan Predictive Maintenance: Remaining Useful Life prediction on NASA's CMAPSS FD001 dataset, comparing Linear Regression, Random Forest, and XGBoost, with a Streamlit app simulating cost savings from predictive vs. reactive maintenance. Built targeting the Honeywell Data Scientist I role." },
+      { keys:['disease','diagnosis','medical','resnet','shap','healthcare system'],
+        answer:"Disease Prediction & Medical Diagnosis System: a ResNet50 CNN (94% accuracy) for imaging plus a custom ANN outperforming baselines by 6% on tabular data, with SHAP explainability, FastAPI, Docker, MLflow, and CI." },
       { keys:['education','degree','mca','university','college','study'],
-        answer:"MCA (AI/ML) — Uttaranchal University, Dehradun (2025–present). B.Sc. Information Technology — University of Mumbai (2018–2021)." },
+        answer:"Master of Computer Applications (MCA), AI/ML: Uttaranchal University, Dehradun (2025–present). Bachelor of Science (B.Sc.), Information Technology: University of Mumbai (2018–2021). Higher Secondary Certificate (HSC), Computer Science: Maharashtra State Board (2016–2018)." },
       { keys:['cert','certification','certified','google','azure cert'],
         answer:"Certified: Google Cloud Professional Machine Learning Engineer, Microsoft Azure Data Scientist Associate, and Microsoft Power BI Data Analyst Associate." },
       { keys:['contact','email','reach','linkedin','phone','number'],
-        answer:"Reach Bhim at bhimrajbhar.ai.engineer@gmail.com or +91 9653263727. LinkedIn: linkedin.com/in/bhimaiengineer — open to ML Engineer / Data Scientist roles, remote or Mumbai-based." },
+        answer:"Reach Bhim at bhimrajbhar.ai.engineer@gmail.com or +91 9653263727. LinkedIn: linkedin.com/in/bhimaiengineer. Open to ML Engineer / Data Scientist roles, remote or on-site anywhere." },
       { keys:['why','hire','strength','value','pitch'],
-        answer:"Bhim ships — not just trains models. 3.8+ years taking ML from notebook to production (Docker, Kubernetes, CI/CD, drift monitoring), now applying that same rigor to agentic AI and RAG systems." },
+        answer:"Bhim ships, not just trains models. 3.8+ years taking ML from notebook to production (Docker, Kubernetes, CI/CD, drift monitoring), now applying that same rigor to agentic AI and RAG systems." },
       { keys:['location','where','mumbai','remote','relocat'],
         answer:"Based in Mumbai, India. Open to remote work and relocation for the right role." },
       { keys:['available','availability','notice','start'],
-        answer:"Open to new Machine Learning Engineer / Data Scientist opportunities now — reach out via email or LinkedIn to talk timelines." },
+        answer:"Open to new Machine Learning Engineer / Data Scientist opportunities now. Reach out via email or LinkedIn to talk timelines." },
     ];
 
-    const helpText = "Commands: help · ls · whoami · resume · clear\nOr just ask in plain English — try \"what projects has he built?\" or \"why should I hire him?\"";
+    const helpText = "Commands: help · ls · whoami · resume · clear\nOr just ask in plain English, try \"what projects has he built?\" or \"why should I hire him?\"";
 
     function scrollToBottom(){ body.scrollTop = body.scrollHeight; }
 
@@ -1650,10 +2400,10 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
       if (lower === 'help'){ typeResponse(helpText); return; }
       if (lower === 'whoami'){ typeResponse("visitor · exploring Bhim Rajbhar's portfolio"); return; }
       if (lower === 'ls' || lower === 'ls projects'){
-        typeResponse("multi-agent-healthcare-triage/  ksp-crime-intelligence/  bah-2026-isro-proposal/"); return;
+        typeResponse("multi-agent-healthcare-triage/  disease-prediction-system/  industrial-defect-detection/  turbofan-rul-prediction/  ksp-crime-intelligence/  bah-2026-isro-proposal/"); return;
       }
       if (lower === 'resume' || lower.startsWith('cat resume')){
-        typeResponse("Bhim Rajbhar — AI/ML Engineer, 3.8+ yrs\nTCS (Data Scientist) → SmartED (ML Intern)\nMCA AI/ML @ Uttaranchal University\n3x cloud certifications · Mumbai, India\nType 'experience', 'skills', or 'projects' for detail.");
+        typeResponse("Bhim Rajbhar · AI/ML Engineer, 3.8+ yrs\nTCS (Data Scientist) → SmartED (ML Intern)\nMCA AI/ML @ Uttaranchal University\n3x cloud certifications · Mumbai, India\nType 'experience', 'skills', or 'projects' for detail.");
         return;
       }
       if (lower.startsWith('sudo')){ typeResponse("Permission denied: visitors don't get root on this one 😄"); return; }
@@ -1675,7 +2425,7 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
       trigger.classList.add('hidden');
       if (!body.dataset.booted){
         body.dataset.booted = '1';
-        typeResponse("Hi, I'm Bhim's portfolio assistant. Ask about his experience, skills, or projects — or type 'help'.");
+        typeResponse("Hi, I'm Bhim's portfolio assistant. Ask about his experience, skills, or projects, or type 'help'.");
       }
       setTimeout(() => input.focus(), 320);
     }
@@ -1749,6 +2499,191 @@ body.has-cursor a, body.has-cursor button{cursor:none;}
   resizeCanvas(); initParticles();
   window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
   if (reduceMotion){ drawParticles(); } else { drawParticles(); }
+
+  // ---- keyboard shortcuts overlay ----
+  (function shortcutsInit(){
+    const overlay = document.getElementById('shortcutsOverlay');
+    if (!overlay) return;
+    function isTyping(){
+      const el = document.activeElement;
+      return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
+    }
+    function toggle(){
+      const open = overlay.classList.toggle('open');
+      overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
+    }
+    function close(){
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+    document.addEventListener('keydown', (e) => {
+      if (isTyping()) return;
+      if (e.key === '?'){ e.preventDefault(); toggle(); }
+      else if (e.key === '/' ){ e.preventDefault(); const t = document.getElementById('aiTrigger'); if (t) t.click(); }
+      else if (e.key.toLowerCase() === 't' && !e.metaKey && !e.ctrlKey){ const tt = document.getElementById('themeToggle'); if (tt) tt.click(); }
+      else if (e.key === 'Escape' && overlay.classList.contains('open')){ close(); }
+    });
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+  })();
+
+  // ---- konami code easter egg ----
+  (function konamiInit(){
+    const banner = document.getElementById('konamiBanner');
+    if (!banner) return;
+    const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let pos = 0;
+    document.addEventListener('keydown', (e) => {
+      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      if (key === seq[pos]){
+        pos++;
+        if (pos === seq.length){
+          pos = 0;
+          document.documentElement.style.setProperty('--accent', '#F0B86E');
+          document.documentElement.style.setProperty('--violet', '#4FE0D0');
+          banner.classList.add('show');
+          setTimeout(() => banner.classList.remove('show'), 3200);
+        }
+      } else {
+        pos = (key === seq[0]) ? 1 : 0;
+      }
+    });
+  })();
+
+  // ---- interactive skill proficiency radar chart ----
+  (function skillRadarInit(){
+    const svg = document.getElementById('skillRadarSvg');
+    const legend = document.getElementById('skillRadarLegend');
+    if (!svg || !legend) return;
+
+    const skills = [
+      { name: 'Agentic AI / LLM',     level: 82, note: 'Current focus: LangGraph orchestration, RAG, guardrails.' },
+      { name: 'ML & Deep Learning',   level: 90, note: '3.8+ yrs across classification, regression, time-series, deep nets.' },
+      { name: 'Computer Vision / NLP',level: 78, note: 'YOLOv8, ResNet, BERT, spaCy in production pipelines.' },
+      { name: 'MLOps & Deployment',   level: 85, note: 'Docker, Kubernetes, CI/CD, MLflow, drift monitoring.' },
+      { name: 'Data & Analytics',     level: 88, note: 'SQL, feature engineering, hypothesis testing at scale.' },
+      { name: 'Cloud Platforms',      level: 80, note: 'AWS, Azure, GCP (3x cloud certifications).' },
+    ];
+
+    const cx = 160, cy = 150, maxR = 110;
+    const n = skills.length;
+    const angleFor = i => (Math.PI * 2 * i / n) - Math.PI / 2;
+    const pointFor = (i, r) => {
+      const a = angleFor(i);
+      return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    };
+
+    // background rings
+    const ringsG = document.getElementById('radarRings');
+    [0.25, 0.5, 0.75, 1].forEach(f => {
+      const pts = skills.map((s, i) => pointFor(i, maxR * f).join(',')).join(' ');
+      const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      poly.setAttribute('points', pts);
+      poly.setAttribute('fill', 'none');
+      poly.setAttribute('stroke', 'var(--border)');
+      poly.setAttribute('stroke-width', '1');
+      ringsG.appendChild(poly);
+    });
+
+    // axes
+    const axesG = document.getElementById('radarAxes');
+    skills.forEach((s, i) => {
+      const [x, y] = pointFor(i, maxR);
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+      line.setAttribute('x2', x); line.setAttribute('y2', y);
+      line.setAttribute('stroke', 'var(--border)');
+      line.setAttribute('stroke-width', '1');
+      axesG.appendChild(line);
+    });
+
+    // labels
+    const labelsG = document.getElementById('radarLabels');
+    skills.forEach((s, i) => {
+      const [x, y] = pointFor(i, maxR + 26);
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', x); text.setAttribute('y', y);
+      const short = s.name.split(' ')[0].replace('/', '');
+      text.textContent = short;
+      labelsG.appendChild(text);
+    });
+
+    const poly = document.getElementById('radarPoly');
+    const pointsG = document.getElementById('radarPoints');
+    let animT = 0;
+    function renderRadar(t){
+      const pts = skills.map((s, i) => pointFor(i, maxR * (s.level / 100) * t));
+      poly.setAttribute('points', pts.map(p => p.join(',')).join(' '));
+      pointsG.innerHTML = '';
+      pts.forEach((p, i) => {
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('class', 'skill-radar-point');
+        g.dataset.index = i;
+        const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        c.setAttribute('cx', p[0]); c.setAttribute('cy', p[1]); c.setAttribute('r', '4');
+        c.setAttribute('fill', 'var(--accent)');
+        g.appendChild(c);
+        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        title.textContent = skills[i].name + ': ' + skills[i].level + '%';
+        g.appendChild(title);
+        g.addEventListener('mouseenter', () => highlightRow(i));
+        g.addEventListener('mouseleave', () => highlightRow(-1));
+        pointsG.appendChild(g);
+      });
+    }
+
+    // legend rows
+    skills.forEach((s, i) => {
+      const row = document.createElement('div');
+      row.className = 'skill-radar-row';
+      row.dataset.index = i;
+      row.innerHTML = '<span class="srr-name"></span><span class="srr-bar"><span class="srr-fill"></span></span><span class="srr-val">' + s.level + '%</span>';
+      row.querySelector('.srr-name').textContent = s.name;
+      row.title = s.note;
+      row.addEventListener('mouseenter', () => highlightRow(i));
+      row.addEventListener('mouseleave', () => highlightRow(-1));
+      legend.appendChild(row);
+    });
+
+    function highlightRow(i){
+      legend.querySelectorAll('.skill-radar-row').forEach(r => r.classList.toggle('active', Number(r.dataset.index) === i));
+      pointsG.querySelectorAll('.skill-radar-point circle').forEach((c, idx) => {
+        c.setAttribute('r', idx === i ? '6' : '4');
+      });
+    }
+
+    // animate in on scroll
+    const wrap = svg.closest('.skill-radar-wrap');
+    let animated = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animated){
+          animated = true;
+          if (reduceMotion){
+            renderRadar(1);
+            legend.querySelectorAll('.srr-fill').forEach((f, i) => { f.style.width = skills[i].level + '%'; });
+          } else {
+            let start = null;
+            const dur = 1100;
+            function step(ts){
+              if (!start) start = ts;
+              const p = Math.min(1, (ts - start) / dur);
+              const eased = 1 - Math.pow(1 - p, 3);
+              renderRadar(eased);
+              if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+            legend.querySelectorAll('.srr-fill').forEach((f, i) => {
+              setTimeout(() => { f.style.width = skills[i].level + '%'; }, 60);
+            });
+          }
+          io.unobserve(wrap);
+        }
+      });
+    }, { threshold: 0.3 });
+    if (wrap) io.observe(wrap);
+    else renderRadar(1);
+  })();
+
 </script>
 
 </body>
